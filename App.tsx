@@ -20,10 +20,10 @@ const App = () => {
   const navigationRef = useRef<NavigationContainerRef>(null);
   const isDarkMode = useColorScheme() === 'dark';
   const token = false;
-  const backgroundStyle = {
-    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    backgroundColor: 'white',
-  };
+  // const backgroundStyle = {
+  //   // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  //   backgroundColor: 'white',
+  // };
 
   return (
     <ErrorBoundary>
