@@ -1,35 +1,36 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {SafeAreaView, Text, useColorScheme, View} from 'react-native';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  NavigationContainer,
+  NavigationContainerRef,
+  DefaultTheme,
+} from '@react-navigation/native';
+import ErrorBoundary from './src/components/ErrorBoundary';
+import AuthStack from './src/navigation/navigators/RootStack';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const WhiteTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+  },
+};
 
 const App = () => {
+  const navigationRef = useRef<NavigationContainerRef>(null);
   const isDarkMode = useColorScheme() === 'dark';
-
+  const token = false;
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: 'white',
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View>
-        <Text>EXAMPLE</Text>
-      </View>
-    </SafeAreaView>
+    <ErrorBoundary>
+      <NavigationContainer ref={navigationRef} theme={WhiteTheme}>
+        {token ? null : <AuthStack />}
+      </NavigationContainer>
+    </ErrorBoundary>
   );
 };
 
